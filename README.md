@@ -102,7 +102,7 @@ resource "burwoodportal_projects" "YOUR-GCP-PROJECT-ID-EXAMPLE1" {
 | departmentid | ID of the department to place the project into. The ID can be retrieved via the hierarchy object. [Example here](examples/projects-and-budgets.tf#L63)| `string` | n/a | yes |
 
 ## latestbudget Inputs
-### Nested block inside Portal Resource config
+*** note that this is a nested block inside Portal Resource config
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | ponumber | PO number to assign to this budget. | `string` | n/a | no |
