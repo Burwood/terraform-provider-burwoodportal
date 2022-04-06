@@ -16,7 +16,7 @@ func Provider() *schema.Provider {
 			"host": &schema.Schema{
 				Type:        schema.TypeString,
 				Optional:    true,
-				DefaultFunc: schema.EnvDefaultFunc("PORTAL_HOST", nil),
+				Default: "https://bcs.burwood.com/",
 			},
 			"username": &schema.Schema{
 				Type:        schema.TypeString,

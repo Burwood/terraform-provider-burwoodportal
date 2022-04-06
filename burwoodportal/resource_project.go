@@ -46,7 +46,8 @@ var budgetSchema = &schema.Resource{
 		},
 		"state": &schema.Schema {
 			Type:	schema.TypeString,
-			Required: true,
+			Default: "Future",
+			Optional: true,
 		},
 	},
 }
@@ -89,10 +90,11 @@ var projectSchema = map[string]*schema.Schema{
 	},
 	"totalbudget": &schema.Schema{
 		Type:     schema.TypeString,
-		Optional: true,
+		Computed: true,
 	},
 	"recurringbudget": &schema.Schema {
 		Type: schema.TypeBool,
+		Default: false,
 		Optional: true,
 	},
 	"departmentid": &schema.Schema{
