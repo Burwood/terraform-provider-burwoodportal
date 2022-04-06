@@ -2,7 +2,7 @@
 This is a custom terraform provider written to interface with the cloudbilling portal REST API, meant to automate the configuration of projects in the portal.
 
 ## Examples
-Examples of the objects defined by this provider are in the examples directory with detailed comments.
+Examples of the objects defined by this provider are in the examples directory with detailed comments. [This](https://github.com/Burwood/burwood-portal-public-trerraform-provider/blob/8b17e282fa08920820d2cec1aa6da32f5385f23c/examples/provider-overview/projects-and-budgets.tf) is a good starting point.
 
 
 ## REST API
@@ -99,7 +99,7 @@ resource "burwoodportal_projects" "YOUR-GCP-PROJECT-ID-EXAMPLE1" {
 | aftercreditsaccount |  Billing account ID for after credits spend. Only relevant to projects set to aftercredits 'Bill'.  | `string` | n/a | no |
 | aftercreditspo | PO to assign after credits spend to. | `string` | n/a | no |
 | recurringbudget | Whether the budget should be recurring. Boolean true or false.| `boolean` | false | no |
-| departmentid | ID of the department to place the project into. The ID can be retrieved via the hierarchy object. [Example here](examples/projects-and-budgets.tf#L63)| `string` | n/a | yes |
+| departmentid | ID of the department to place the project into. The ID can be retrieved via the hierarchy object. [Example here](https://github.com/Burwood/burwood-portal-public-trerraform-provider/blob/8b17e282fa08920820d2cec1aa6da32f5385f23c/examples/provider-overview/projects-and-budgets.tf)| `string` | n/a | yes |
 
 ## latestbudget Inputs
 *** note that this is a nested block inside Portal Resource config
