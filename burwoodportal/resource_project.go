@@ -49,6 +49,11 @@ var budgetSchema = &schema.Resource{
 			Default: "Future",
 			Optional: true,
 		},
+		"recurring": &schema.Schema {
+			Type:	schema.TypeBool,
+			Default: true,
+			Optional: true,
+		},
 	},
 }
 
@@ -209,6 +214,7 @@ func resourceProjectCreateOrUpdate(ctx context.Context, d *schema.ResourceData, 
 			DateSuspended: allowanceObject["datesuspended"].(string),
 			DateActivated: allowanceObject["dateactivated"].(string),
 			State: allowanceObject["state"].(string),
+			Recurring: allowanceObject["recurring"].(bool),
 		}
 		err = c.postBudget(projectID, "project", allowanceStruct)
 	
@@ -223,7 +229,7 @@ func resourceProjectCreateOrUpdate(ctx context.Context, d *schema.ResourceData, 
 		}
 	} 
 
-	d.SetId(response.ProjectID)
+	d.SetId(projectID)
 
 	return diags
 }

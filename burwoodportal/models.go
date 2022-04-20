@@ -41,6 +41,8 @@ type Allowance struct {
 	DateActivated			string   `json:"dateactivated"`
 	DateIssued				string	 `json:"dateissued"`
 	State					string   `json:"state"`
+	Recurring					bool  `json:"recurring"`
+	ActualSpend					string   `json:"actualspend"`
 
 }
 

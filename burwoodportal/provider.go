@@ -16,7 +16,7 @@ func Provider() *schema.Provider {
 			"host": &schema.Schema{
 				Type:        schema.TypeString,
 				Optional:    true,
-				Default: "https://bcs.burwood.com/",
+				Default: "https://api.bcs.burwood.com",
 			},
 			"username": &schema.Schema{
 				Type:        schema.TypeString,
