@@ -40,4 +40,4 @@ terraform
 
 .gitignore
 
-__debug_bin
+_debug_bin
