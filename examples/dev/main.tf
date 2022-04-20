@@ -8,23 +8,24 @@ terraform {
   }
 }
 
-# Enter portal credentials as inputs
-variable "username" {
-  description = "Burwood portal username"
-  type        = string
-} 
+# # Enter portal credentials as inputs
+# variable "username" {
+#   description = "Burwood portal username"
+#   type        = string
+# } 
 
-variable "password" {
-  description = "Burwood portal password"
-  type        = string
-}
+# variable "password" {
+#   description = "Burwood portal password"
+#   type        = string
+# }
 
 
 provider "burwoodportal" {
     # Pass a username and password when initializing the provider.
     # Needed to make authenticated requests to the portal.
-    username = var.username
-    password = var.password
+    host = "http://localhost:5000"
+    username = "dpalencia@burwood.com"
+    password = "ExXgsHrkZG34Uv5"
 }
 
 
@@ -34,7 +35,7 @@ data "burwoodportal_hierarchy" "hierarchy" {}
 resource "burwoodportal_projects" "acme-corp-export" { 
    projectid = "acme-corp-export"
    aftercredits = "Bill"
-   aftercreditsaccount = "ACCOUNTID"
+   aftercreditsaccount = "018213-2CBF7F-0EBB8B"
    departmentid  = flatten([
     for groupIndex, _ in data.burwoodportal_hierarchy.hierarchy.groups : [
       for departmentIndex, departmentValue in data.burwoodportal_hierarchy.hierarchy.groups[groupIndex].departments : {
@@ -42,13 +43,11 @@ resource "burwoodportal_projects" "acme-corp-export" {
       } 
     if departmentValue.departmentname == "CloudOps"  ] 
   ])[0].departmentid
-   recurringbudget = true
    latestbudget {
       ponumber = "MYPO123"
       grant = "MYGRANT456"
-      amount = 13337
+      amount = 133337
       state = "Future"
-      recurring = true
-      billingaccountid = "ACCOUNTID"
+      billingaccountid = "018213-2CBF7F-0EBB8B"
     }
 }
