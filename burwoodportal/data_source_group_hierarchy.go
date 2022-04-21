@@ -17,6 +17,7 @@ var projectDataSourceSchema = &schema.Resource{
 		"projectid": &schema.Schema{
 			Type:     schema.TypeString,
 			Computed: true,
+			Description: "GCP project id",
 		},
 	},
 }
@@ -26,15 +27,18 @@ var departmentDataSourceSchema = &schema.Resource{
 		"departmentname": &schema.Schema{
 			Type:     schema.TypeString,
 			Computed: true,
+			Description: "Department name as it appears in the portal.",
 		},
 		"departmentid": &schema.Schema{
 			Type:     schema.TypeString,
 			Computed: true,
+			Description: "Unique department ID used under the hood to relate the department to projects and groups.",
 		},
 		"projects": &schema.Schema{
 			Type:     schema.TypeList,
 			Elem:     projectDataSourceSchema,
 			Computed: true,
+			Description: "List of projects. See project schema.",
 		},
 	},
 }
@@ -48,15 +52,18 @@ var groupDataSourceSchema = map[string]*schema.Schema{
 				"groupname": &schema.Schema{
 					Type:     schema.TypeString,
 					Computed: true,
+					Description: "Group name as it appears in the portal.",
 				},
 				"groupid": &schema.Schema{
 					Type:     schema.TypeString,
 					Computed: true,
+					Description: "Unique group ID used under the hood to relate groups to departments.",
 				},
 				"departments": &schema.Schema {
 					Type: schema.TypeList,
 					Elem: departmentDataSourceSchema,
 					Computed: true,
+					Description: "List of departments. Projects are nested underneath departments. See department schema.",
 				},
 			},
 		},

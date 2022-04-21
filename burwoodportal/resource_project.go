@@ -15,44 +15,54 @@ var budgetSchema = &schema.Resource{
 		"ponumber": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Description: "PO to use for this budget (custom terminology for this field may be present in the portal UI, e.g. ChartField)",
 		},
 		"grant": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Description: "Grant to use for this budget.",
 		},
 		"amount": &schema.Schema{
 			Type:     schema.TypeInt,
 			Required: true,
+			Description: "Dollar amount to use for the budget. Acts as a float data type (decimals allowed).",
 		},
 		"billingaccountid": &schema.Schema{
 			Type:     schema.TypeString,
 			Required: true,
+			Description: "GCP billing account ID to use for consumption on this budget.",
 		},
 		"expirationdate": &schema.Schema{
 			Type:     schema.TypeString,
 			Optional: true,
+			Description: "YYYY-MM-DD format. Date after which to mark the budget as consumed regardless of spend on it.",
 		},
 		"dateissued": &schema.Schema{
 			Type:     schema.TypeString,
 			Computed: true,
+			Description: "YYYY-MM-DD format. Budget issue date. Used in budget alerting emails.",
 		},
 		"dateactivated": &schema.Schema{
 			Type:     schema.TypeString,
 			Computed: true,
+			Description: "Budget activation date. Date on which the budget activate its billing account and tracking consumption.",
 		},
 		"datesuspended": &schema.Schema{
 			Type:     schema.TypeString,
 			Computed: true,
+			Description: "Date on which the budget was deactivate and marked consumed.",
 		},
 		"state": &schema.Schema {
 			Type:	schema.TypeString,
 			Default: "Future",
 			Optional: true,
+			Description: "Valid values are 'Active' and 'Future'. WARNING! If set to 'Active', this budget will mark existing active budgets as consumed and set the GCP project's billing account to the specified billingaccountid!",
 		},
 		"recurring": &schema.Schema {
 			Type:	schema.TypeBool,
-			Default: true,
+			Default: false,
 			Optional: true,
+			Description: "Boolean; whether the budget should be a recurring monthly budget or a standard budget.",
 		},
 	},
 }
@@ -63,57 +73,70 @@ var projectSchema = map[string]*schema.Schema{
 	"projectid": &schema.Schema{
 		Type:     schema.TypeString,
 		Required: true,
+		Description: "GCP Project ID",
 	},
 	"projectname": &schema.Schema{
 		Type:     schema.TypeString,
 		Optional: true,
+		Description: "Project name  as shown in the portal.",
 	},
 	"primarycontactemail": &schema.Schema{
 		Type:     schema.TypeString,
 		Optional: true,
+		Description: "The project primary contact email address.",
 	},
 	"billingcontactemail": &schema.Schema{
 		Type:     schema.TypeString,
 		Optional: true,
+		Description: "Primary billing contact email.",
 	},
 	"aftercredits": &schema.Schema{
 		Type:     schema.TypeString,
 		Default: "Suspend",
 		Optional: true,
+		Description: "Valid values: 'Bill' or 'Suspend'. Only set to bill if post-budget free spend is desired.",
 	},
 	"aftercreditsaccount": &schema.Schema {
 		Type: schema.TypeString,
 		Optional: true,
+		Description: "GCP billing account to use for post-credit consumption. Only applies if aftercredits is set to 'Suspend' ",
 	},
 	"aftercreditspo": &schema.Schema {
 		Type: schema.TypeString,
 		Optional: true,
+		Description: "Purchase Order for afterCredits consumption.",
 	},
 	"paidbillingaccount": &schema.Schema {
 		Type: schema.TypeString,
 		Optional: true,
+		Description: "The project GCP billing account ID. WARNING! This will change the project's billing account in GCP!",
 	},
 	"totalbudget": &schema.Schema{
 		Type:     schema.TypeString,
 		Computed: true,
+		Description: "Total budget dollar amount on the project.",
 	},
 	"recurringbudget": &schema.Schema {
 		Type: schema.TypeBool,
 		Default: false,
 		Optional: true,
+		Description: "Boolean. Whether project budgets should recur on a monthly basis.",
 	},
 	"departmentid": &schema.Schema{
 		Type:     schema.TypeString,
 		Required: true,
+		Description: "Department ID to for the project. If invalid or not given, the project will be placed into the 'Unaffiliated Projects' department. Department names and ID's can be seen in the group hierarchy data source, and a code example can be seen in the guides.",
 	},
 	"departmentname": &schema.Schema{
 		Type:     schema.TypeString,
 		Computed: true,
+		Description: "Department name that the project is under.",
 	},
 	"latestbudget": &schema.Schema {
 		Type: schema.TypeList,
 		Elem: budgetSchema,
 		Optional: true,
+		Description: "Most recently added budget. If given as a subblock, a new budget will be appended to the prjoect. See the budget schema for more details.",
 	},
 }
  

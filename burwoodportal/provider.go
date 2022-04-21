@@ -17,17 +17,20 @@ func Provider() *schema.Provider {
 				Type:        schema.TypeString,
 				Optional:    true,
 				Default: "https://api.bcs.burwood.com",
+				Description: "Desired hostname. Only needed if interactions with non-production environments are desired.",
 			},
 			"username": &schema.Schema{
 				Type:        schema.TypeString,
-				Optional:    true,
+				Required:    true,
 				DefaultFunc: schema.EnvDefaultFunc("PORTAL_USERNAME", nil),
+				Description: "Burwood portal username used for authentication with the Burwood portal REST API.",
 			},
 			"password": &schema.Schema{
 				Type:        schema.TypeString,
-				Optional:    true,
+				Required:    true,
 				Sensitive:   true,
 				DefaultFunc: schema.EnvDefaultFunc("PORTAL_PASSWORD", nil),
+				Description: "Burwood portal password used for authentication with the Burwood portal REST API.",
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{

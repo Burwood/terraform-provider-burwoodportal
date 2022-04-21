@@ -21,7 +21,7 @@ description: |-
 
 ### Read-Only
 
-- `groups` (List of Object) (see [below for nested schema](#nestedatt--groups))
+- `groups` (List of Object) (see [below for nested schema](#nestedatt--groups))  
 
 <a id="nestedatt--groups"></a>
 ### Nested Schema for `groups`
@@ -29,16 +29,16 @@ description: |-
 Read-Only:
 
 - `departments` (List of Object) (see [below for nested schema](#nestedobjatt--groups--departments))
-- `groupid` (String)
-- `groupname` (String)
+- `groupid` (String)   Unique group ID used under the hood to relate groups to departments.
+- `groupname` (String) Group name as it appears in the portal.
 
 <a id="nestedobjatt--groups--departments"></a>
 ### Nested Schema for `groups.departments`
 
 Read-Only:
 
-- `departmentid` (String)
-- `departmentname` (String)
+- `departmentid` (String) Unique department ID used under the hood to relate the department to projects and groups.
+- `departmentname` (String) Department name as it appears in the portal.
 - `projects` (List of Object) (see [below for nested schema](#nestedobjatt--groups--departments--projects))
 
 <a id="nestedobjatt--groups--departments--projects"></a>
@@ -46,6 +46,6 @@ Read-Only:
 
 Read-Only:
 
-- `projectid` (String)
+- `projectid` (String) GCP project id
 
 

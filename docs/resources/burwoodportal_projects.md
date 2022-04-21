@@ -17,47 +17,47 @@ description: |-
 
 ### Required
 
-- `departmentid` (String)
-- `projectid` (String)
+- `departmentid` (String) Department ID to for the project. If invalid or not given, the project will be placed into the 'Unaffiliated Projects' department. Department names and ID's can be seen in the group hierarchy data source, and a code example can be seen in the guides.
+- `projectid` (String) GCP Project ID
 
 ### Optional
 
-- `aftercredits` (String)
-- `aftercreditsaccount` (String)
-- `aftercreditspo` (String)
-- `billingcontactemail` (String)
+- `aftercredits` (String) Valid values: 'Bill' or 'Suspend'. Only set to bill if post-budget free spend is desired.
+- `aftercreditsaccount` (String) GCP billing account to use for post-credit consumption. Only applies if aftercredits is set to 'Suspend'
+- `aftercreditspo` (String) Purchase Order for afterCredits consumption.
+- `billingcontactemail` (String) Primary billing contact email.
 - `id` (String) The ID of this resource.
-- `latestbudget` (Block List) (see [below for nested schema](#nestedblock--latestbudget))
-- `paidbillingaccount` (String)
-- `primarycontactemail` (String)
-- `projectname` (String)
-- `recurringbudget` (Boolean)
+- `latestbudget` (Block List) Most recently added budget. If given as a subblock, a new budget will be appended to the prjoect. See the budget schema for more details. (see [below for nested schema](#nestedblock--latestbudget))
+- `paidbillingaccount` (String) The project GCP billing account ID. WARNING! This will change the project's billing account in GCP!
+- `primarycontactemail` (String) The project primary contact email address.
+- `projectname` (String) Project name  as shown in the portal.
+- `recurringbudget` (Boolean) Boolean. Whether project budgets should recur on a monthly basis.
 
 ### Read-Only
 
-- `departmentname` (String)
-- `totalbudget` (String)
+- `departmentname` (String) Department name that the project is under.
+- `totalbudget` (String) Total budget dollar amount on the project.
 
 <a id="nestedblock--latestbudget"></a>
 ### Nested Schema for `latestbudget`
 
 Required:
 
-- `amount` (Number)
-- `billingaccountid` (String)
+- `amount` (Number) Dollar amount to use for the budget. Acts as a float data type (decimals allowed).
+- `billingaccountid` (String) GCP billing account ID to use for consumption on this budget.
 
 Optional:
 
-- `expirationdate` (String)
-- `grant` (String)
-- `ponumber` (String)
-- `recurring` (Boolean)
-- `state` (String)
+- `expirationdate` (String) YYYY-MM-DD format. Date after which to mark the budget as consumed regardless of spend on it.
+- `grant` (String) Grant to use for this budget.
+- `ponumber` (String) PO to use for this budget (custom terminology for this field may be present in the portal UI, e.g. ChartField)
+- `recurring` (Boolean) Boolean; whether the budget should be a recurring monthly budget or a standard budget.
+- `state` (String) Valid values are 'Active' and 'Future'. WARNING! If set to 'Active', this budget will mark existing active budgets as consumed and set the GCP project's billing account to the specified billingaccountid!
 
 Read-Only:
 
-- `dateactivated` (String)
-- `dateissued` (String)
-- `datesuspended` (String)
+- `dateactivated` (String) Budget activation date. Date on which the budget activate its billing account and tracking consumption.
+- `dateissued` (String) YYYY-MM-DD format. Budget issue date. Used in budget alerting emails.
+- `datesuspended` (String) Date on which the budget was deactivate and marked consumed.
 
 
