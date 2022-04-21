@@ -2,7 +2,7 @@
 This is a custom terraform provider written to interface with the cloudbilling portal REST API and to automate the configuration of projects in the portal.
 
 ## Examples
-Anotated code examples can be seen in the Guide section of this documentation.
+Anotated code examples can be seen [here](https://github.com/Burwood/terraform-provider-burwoodportal/blob/8074a7796936dfb16eeda8f2bbb2c1e41d724c23/examples/provider-overview/projects-and-budgets.tf).
 
 ## REST API
 This provider consumes the Burwood portal's public REST API, as documented here:
