@@ -43,3 +43,7 @@ terraform
 _debug_bin
 
 examples/dev
+
+.vscode
+
+*_debug_bin

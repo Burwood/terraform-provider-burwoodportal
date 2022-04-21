@@ -387,32 +387,30 @@ func resourceProjectRead(ctx context.Context, d *schema.ResourceData, m interfac
 }
 
 
-func (c *Client) deleteProject(projectID string) (*Project, error) {
+func (c *Client) deleteProject(projectID string) (error) {
 	req, err := http.NewRequest("DELETE", fmt.Sprintf("%s/api/project/%s", c.HostURL, projectID), nil)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	
-	responseBody, err := c.doRequest(req, nil)
-	responseBodyUnmarshal := &Project{}
-	err = json.Unmarshal(responseBody, &responseBodyUnmarshal)
+	_, err = c.doRequest(req, nil)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return responseBodyUnmarshal, nil
+	return nil
 }
 
 func resourceProjectDelete(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics { 
 	var diags diag.Diagnostics
 	c := m.(*Client)
 	projectID := d.Get("projectid")
-	deleteResponse, err := c.deleteProject(projectID.(string))
+	err := c.deleteProject(projectID.(string))
 	if err != nil {
 		diags = append(diags, diag.Diagnostic{
 			Severity: diag.Error,
 			Summary:  "Error Deleting Project",
-			Detail:   fmt.Sprintf("Response: %v", deleteResponse),
+			Detail:   fmt.Sprintf("Error: %v", err),
 		})
 
 		return diag.FromErr(err)
