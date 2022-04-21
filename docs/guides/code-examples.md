@@ -1,4 +1,5 @@
 
+
     # Enter portal credentials as inputs
     variable "username" {
     description = "Burwood portal username"

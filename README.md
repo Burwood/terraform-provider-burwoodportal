@@ -1,20 +1,18 @@
 # Burwood portal terraform provider
-This is a custom terraform provider written to interface with the cloudbilling portal REST API, meant to automate the configuration of projects in the portal.
+This is a custom terraform provider written to interface with the cloudbilling portal REST API and to automate the configuration of projects in the portal.
 
 ## Examples
-Examples of the objects defined by this provider are in the examples directory with detailed comments. [This](https://github.com/Burwood/burwood-portal-public-trerraform-provider/blob/8b17e282fa08920820d2cec1aa6da32f5385f23c/examples/provider-overview/projects-and-budgets.tf) is a good starting point.
-
+Anotated code examples can be seen in the Guide section of this documentation.
 
 ## REST API
-
 This provider consumes the Burwood portal's public REST API, as documented here:
 
-https://app.swaggerhub.com/apis/Burwood-Group/burwood_cloud_services/
+https://app.swaggerhub.com/apis-docs/Burwood-Group/burwood_cloud_services/
 
 ## Authentication
-The portal REST API uses oauth flow. All you need to do is pass the configuration a username and password, and the provider will handle authentication from there.
+The portal REST API uses oauth flow. Pass the provide configuration a username and password and it will handle authentication with the REST API from there.
 
-An example of initialization of the provider with authentication is shown:
+An example of initialization of the provider with input variables is shown:
 
 ```
 variable "username" {
@@ -69,14 +67,13 @@ If the project already exists, the existing project will be updated with any giv
 
 This resource supports creation of a new budget. Simply define a subblock called latestbudget and pass it the fields shown.
 
-A basic example of project configuration with a budget is shown here,
+A basic example of project configuration with an active budget is shown here,
 
 
 ```
 resource "burwoodportal_projects" "YOUR-GCP-PROJECT-ID-EXAMPLE1" { 
    projectid = "YOUR-GCP-PROJECT-ID-EXAMPLE1"
    departmentid  = "DEPARTMENTID" 
-   recurringbudget = false
    latestbudget {
       ponumber = "12345"
       grant = "grantnum"
@@ -86,7 +83,6 @@ resource "burwoodportal_projects" "YOUR-GCP-PROJECT-ID-EXAMPLE1" {
     }
 }
 ```
-
 
 ## burwoodportal_projects Inputs
 | Name | Description | Type | Default | Required |
@@ -107,7 +103,7 @@ resource "burwoodportal_projects" "YOUR-GCP-PROJECT-ID-EXAMPLE1" {
 |------|-------------|------|---------|:--------:|
 | ponumber | PO number to assign to this budget. | `string` | n/a | no |
 | grant | Grant number to assign to this budget. | `string` | n/a | no |
-| amount|  Budget amount in dollars. | `int` | n/a | yes |
+| amount|  Budget amount in dollars. | `number` | n/a | yes |
 | billingaccountid |  Billing account ID to consume this budget on. | `string` | n/a | yes |
 | expirationdate | YYYY-MM-DD date to expire the budget on. | `string` | n/a | no |
 | state| Desired state of the budget. Either 'Active' to activate the budget immediately, or 'Future' to set a future budget. WARNING: Setting an active budget will change the project's active billing account! | `string` | Future | yes |

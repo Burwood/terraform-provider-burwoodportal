@@ -7,13 +7,12 @@ description: |-
 ---
 
 # Burwood portal terraform provider
-This is a custom terraform provider written to interface with the cloudbilling portal REST API, meant to automate the configuration of projects in the portal.
+This is a custom terraform provider written to interface with the cloudbilling portal REST API and to automate the configuration of projects in the portal.
 
 ## Examples
 Anotated code examples can be seen in the Guide section of this documentation.
 
 ## REST API
-
 This provider consumes the Burwood portal's public REST API, as documented here:
 
 https://app.swaggerhub.com/apis-docs/Burwood-Group/burwood_cloud_services/
@@ -92,7 +91,6 @@ resource "burwoodportal_projects" "YOUR-GCP-PROJECT-ID-EXAMPLE1" {
     }
 }
 ```
-
 
 
 

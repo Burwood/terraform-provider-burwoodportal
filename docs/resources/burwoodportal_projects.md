@@ -22,7 +22,7 @@ description: |-
 
 ### Optional
 
-- `aftercredits` (String) Valid values: 'Bill' or 'Suspend'. Only set to bill if post-budget free spend is desired.
+- `aftercredits` (String) Default: 'Suspend'. Valid values: 'Bill' or 'Suspend'. Only set to bill if post-budget free spend is desired.
 - `aftercreditsaccount` (String) GCP billing account to use for post-credit consumption. Only applies if aftercredits is set to 'Suspend'
 - `aftercreditspo` (String) Purchase Order for afterCredits consumption.
 - `billingcontactemail` (String) Primary billing contact email.
@@ -31,7 +31,7 @@ description: |-
 - `paidbillingaccount` (String) The project GCP billing account ID. WARNING! This will change the project's billing account in GCP!
 - `primarycontactemail` (String) The project primary contact email address.
 - `projectname` (String) Project name  as shown in the portal.
-- `recurringbudget` (Boolean) Boolean. Whether project budgets should recur on a monthly basis.
+- `recurringbudget` (Boolean) Default: false. Whether project budgets should recur on a monthly basis.
 
 ### Read-Only
 
@@ -52,7 +52,7 @@ Optional:
 - `grant` (String) Grant to use for this budget.
 - `ponumber` (String) PO to use for this budget (custom terminology for this field may be present in the portal UI, e.g. ChartField)
 - `recurring` (Boolean) Boolean; whether the budget should be a recurring monthly budget or a standard budget.
-- `state` (String) Valid values are 'Active' and 'Future'. WARNING! If set to 'Active', this budget will mark existing active budgets as consumed and set the GCP project's billing account to the specified billingaccountid!
+- `state` (String) Default: 'Future'. Valid values are 'Active' and 'Future'. WARNING! If set to 'Active', this budget will mark existing active budgets as consumed and set the GCP project's billing account to the specified billingaccountid!
 
 Read-Only:
 
