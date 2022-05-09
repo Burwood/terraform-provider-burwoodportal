@@ -23,7 +23,7 @@ var budgetSchema = &schema.Resource{
 			Description: "Grant to use for this budget.",
 		},
 		"amount": &schema.Schema{
-			Type:     schema.TypeInt,
+			Type:     schema.TypeFloat,
 			Required: true,
 			Description: "Dollar amount to use for the budget. Acts as a float data type (decimals allowed).",
 		},
@@ -231,7 +231,7 @@ func resourceProjectCreateOrUpdate(ctx context.Context, d *schema.ResourceData, 
 		allowanceStruct := Allowance {
 			PONumber: allowanceObject["ponumber"].(string),
 			Grant: allowanceObject["grant"].(string),
-			Amount: allowanceObject["amount"].(int),
+			Amount: allowanceObject["amount"].(float64),
 			BillingAccountID: allowanceObject["billingaccountid"].(string),
 			ExpirationDate: allowanceObject["expirationdate"].(string),
 			DateSuspended: allowanceObject["datesuspended"].(string),

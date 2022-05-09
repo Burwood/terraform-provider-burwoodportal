@@ -34,7 +34,7 @@ type Project struct {
 type Allowance struct {
 	PONumber       			string	 `json:"ponumber"`	
 	Grant					string 	 `json:"grant"`
-	Amount					int		 `json:"amount"`
+	Amount					float64	 `json:"amount"`
 	BillingAccountID		string	 `json:"billingaccountid"`
 	ExpirationDate			string	 `json:"expirationdate"`
 	DateSuspended			string   `json:"datesuspended"`
