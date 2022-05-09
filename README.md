@@ -96,7 +96,7 @@ resource "burwoodportal_projects" "YOUR-GCP-PROJECT-ID-EXAMPLE1" {
 | aftercreditspo | PO to assign after credits spend to. | `string` | n/a | no |
 | recurringbudget | Whether the budget should be recurring. Boolean true or false.| `boolean` | false | no |
 | departmentid | ID of the department to place the project into. The ID can be retrieved via the hierarchy object. [Example here](https://github.com/Burwood/burwood-portal-public-trerraform-provider/blob/8b17e282fa08920820d2cec1aa6da32f5385f23c/examples/provider-overview/projects-and-budgets.tf)| `string` | n/a | yes |
-
+ 
 ## latestbudget Inputs
 *** note that this is a nested block inside Portal Resource config
 | Name | Description | Type | Default | Required |
